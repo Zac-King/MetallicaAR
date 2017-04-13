@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class UIUtilities : MonoBehaviour
 {
-
     public void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                LoadLastScene();
+            }
+            else
             {
                 ExitApp();
             }
@@ -24,6 +27,10 @@ public class UIUtilities : MonoBehaviour
     public void ChangeScenes(string aScanaName)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(aScanaName);
+    }
+    public void LoadLastScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public float CheckScreenSize()
